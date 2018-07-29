@@ -78,9 +78,10 @@ public class DetailPresenter implements Presenter {
     public void setMovie(Movie movie) {
         this.movie = movie;
     }
-    public void getTrailers(){
+    public void getTrailers(TrailerAdapter adapter){
         TMDBInterface tmdbInterface = TMDBClient.getClient().create(TMDBInterface.class);
         Call<TrailerResponse> call = tmdbInterface.getTrailers(movie.getMovieId(),API_KEY);
+        mTrailerAdapter = adapter;
         call.enqueue(new Callback<TrailerResponse>() {
             @Override
             public void onResponse(Call<TrailerResponse> call, Response<TrailerResponse> response) {
@@ -99,9 +100,10 @@ public class DetailPresenter implements Presenter {
             }
         });
     }
-    public void getReviews(){
+    public void getReviews(ReviewAdapter adapter){
         TMDBInterface tmdbInterface = TMDBClient.getClient().create(TMDBInterface.class);
         Call<ReviewResponse> call = tmdbInterface.getReviews(movie.getMovieId(),API_KEY);
+        mReviewAdapter = adapter;
         call.enqueue(new Callback<ReviewResponse>() {
             @Override
             public void onResponse(Call<ReviewResponse> call, Response<ReviewResponse> response) {

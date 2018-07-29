@@ -187,13 +187,13 @@ if(savedInstanceState!=null){
     @Override
     public void showTrailers() {
 
-       mPresenter.getTrailers();
-       mPresenter.getReviews();
+       mPresenter.getTrailers(trailerAdapter);
+
     }
 
     @Override
     public void showReviews() {
-
+        mPresenter.getReviews(revAdapter);
     }
 
     @Override
